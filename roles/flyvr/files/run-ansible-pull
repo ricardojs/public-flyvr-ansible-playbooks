@@ -1,0 +1,11 @@
+#!/bin/bash
+set -e
+
+# This file runs ansible in pull mode. Install to:
+#
+#    /etc/cron.hourly/run-ansible-pull
+
+cd /strawlab/ansible
+source ./hacking/env-setup
+
+ansible-pull -U https://github.com/strawlab/public-flyvr-ansible-playbooks.git -d /strawlab/playbooks site.yml

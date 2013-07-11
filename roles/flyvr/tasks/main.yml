@@ -1,0 +1,30 @@
+---
+# roles/flyvr/tasks/main.yml
+
+
+# -------------- basic setup ---------------
+- name: get strawlab apt signing key
+  apt_key: id=F8DB323D url=http://debs.strawlab.org/astraw-archive-keyring.gpg state=present
+
+- name: get strawlab public apt repo
+  apt_repository: repo='deb http://debs.strawlab.org/ ${ansible_lsb.codename}/'
+
+- name: update packages
+  apt: upgrade=dist
+
+# install miscellaneous useful packages
+- apt: name=python-sh state=installed
+- apt: name=python-grin state=installed
+- apt: name=htop state=installed
+- apt: name=emacs23 state=installed
+- apt: name=byobu state=installed
+
+- name: install ansible pull cron job
+  copy: src=run-ansible-pull dest=/etc/cron.hourly/run-ansible-pull mode=0775 owner=root group=root
+
+# --------- install ROS (including flyvr) --------------------
+- name: copy installer script
+  copy: src=install-strawlab-ros-electric.sh dest=/tmp/install-strawlab-ros-electric.sh owner=root group=root mode=0755
+
+- name: run installer script
+  action: shell /tmp/install-strawlab-ros-electric.sh creates=/opt/ros

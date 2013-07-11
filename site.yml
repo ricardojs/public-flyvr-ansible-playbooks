@@ -1,0 +1,5 @@
+---
+# site.yml
+- hosts: localhost
+  roles:
+    - flyvr
