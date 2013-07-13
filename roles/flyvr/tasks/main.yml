@@ -2,6 +2,11 @@
 # roles/flyvr/tasks/main.yml
 
 
+# -------------- add multiverse repository (needed for nvidia-cg-toolkit) ---------------
+- apt_repository: repo='deb http://archive.ubuntu.com/ubuntu/ ${ansible_lsb.codename} multiverse'
+- apt_repository: repo='deb http://archive.ubuntu.com/ubuntu/ ${ansible_lsb.codename}-updates multiverse'
+- apt_repository: repo='deb http://security.ubuntu.com/ubuntu ${ansible_lsb.codename}-security multiverse'
+
 # -------------- basic setup ---------------
 - name: get strawlab apt signing key
   apt_key: id=F8DB323D url=http://debs.strawlab.org/astraw-archive-keyring.gpg state=present
