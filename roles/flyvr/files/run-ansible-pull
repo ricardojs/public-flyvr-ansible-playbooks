@@ -5,7 +5,7 @@ set -e
 #
 #    /etc/cron.hourly/run-ansible-pull
 
-cd /strawlab/ansible
+cd /opt/ansible
 source ./hacking/env-setup
 
-ansible-pull -U https://github.com/strawlab/public-flyvr-ansible-playbooks.git -d /strawlab/playbooks site.yml
+ansible-pull -U https://github.com/strawlab/public-flyvr-ansible-playbooks.git -d /etc/ansible/playbooks site.yml
