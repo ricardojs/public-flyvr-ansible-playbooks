@@ -2,6 +2,7 @@
 # roles/flyvr/tasks/main.yml
 
 # install requirements for apt_repository module
+- apt: upgrade=dist
 - apt: name=python-software-properties state=installed
 
 # -------------- add multiverse repository (needed for nvidia-cg-toolkit) ---------------
