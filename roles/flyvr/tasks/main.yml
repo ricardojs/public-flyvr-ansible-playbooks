@@ -2,8 +2,7 @@
 # roles/flyvr/tasks/main.yml
 
 # install requirements for apt_repository module
-- apt: upgrade=dist
-- apt: name=python-software-properties state=installed
+- apt: name=python-software-properties state=installed update_cache=yes
 
 # -------------- add multiverse repository (needed for nvidia-cg-toolkit) ---------------
 - apt_repository: repo='deb http://archive.ubuntu.com/ubuntu/ ${ansible_lsb.codename} multiverse'
